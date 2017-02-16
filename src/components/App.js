@@ -42,6 +42,7 @@ class clothCard extends Component {
             )}
           >
             {images.map((image, index) => {
+              const multiplier = screenWidth * index;
               return (
                 <Animated.Image 
                   key={index}
@@ -49,7 +50,7 @@ class clothCard extends Component {
                     styles.image,
                     {
                       opacity: scrollX.interpolate({
-                        inputRange: [0 + (screenWidth * index), halfScreenWidth + (screenWidth * index)],
+                        inputRange: [0 + multiplier, halfScreenWidth + multiplier],
                         outputRange: [1 , 0],
                       })
                     },
