@@ -5,11 +5,11 @@ import {
   View,
   ScrollView,
   Image,
-  Dimensions,
   Platform,
 } from 'react-native';
 
 import Card from './Card';
+import ProductImage from './ProductImage';
 
 class clothCard extends Component {
   render() {
@@ -21,26 +21,10 @@ class clothCard extends Component {
             pagingEnabled 
             showsHorizontalScrollIndicator={false}
           >
-            <Image 
-              style={styles.image} 
-              resizeMode="contain" 
-              source={require('../img/red-dress.png')}
-            />
-            <Image 
-              style={styles.image} 
-              resizeMode="contain" 
-              source={require('../img/blue-dress.png')}
-            />
-            <Image 
-              style={styles.image} 
-              resizeMode="contain" 
-              source={require('../img/green-dress.png')}
-            />
-            <Image 
-              style={styles.image} 
-              resizeMode="contain" 
-              source={require('../img/yellow-dress.png')}
-            />
+            <ProductImage source={require('../img/red-dress.png')} />
+            <ProductImage source={require('../img/blue-dress.png')} />
+            <ProductImage source={require('../img/green-dress.png')} />
+            <ProductImage source={require('../img/yellow-dress.png')} />
           </ScrollView>
         </View>
         <Card />
@@ -57,9 +41,6 @@ const styles = StyleSheet.create({
   images: {
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 20 : 0,
-  },
-  image: {
-    width: Dimensions.get('window').width,
   },
 });
 
