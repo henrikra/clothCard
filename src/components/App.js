@@ -34,6 +34,10 @@ class clothCard extends Component {
   scrollToImage = index => {
     this.images.scrollTo({x: index * screenWidth})
   }
+
+  selectSize = index => {
+    this.setState({selectedSizeIndex: index});
+  }  
   
   render() {
     const {scrollX, selectedSizeIndex} = this.state;
@@ -77,6 +81,7 @@ class clothCard extends Component {
           colors={product.colors.map(product => product.color)} 
           sizes={product.sizes}
           selectedSizeIndex={selectedSizeIndex}
+          onSizePress={this.selectSize}
         />
       </View>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Card = ({colors, onColorPress, sizes, selectedSizeIndex}) => {
+const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -15,13 +15,21 @@ const Card = ({colors, onColorPress, sizes, selectedSizeIndex}) => {
           <Text style={styles.currency}>$</Text><Text style={styles.price}>129.00</Text>
         </View>
         <View style={styles.sizes}>
-          {sizes.map((size, index) => (
-            <View key={index} style={[styles.size, selectedSizeIndex === index && styles.sizeSelected]}>
-              <Text style={[styles.sizeText, selectedSizeIndex === index && styles.sizeTextSelected]}>
-                {size.toUpperCase()}
-              </Text>
-            </View>
-          ))}
+          {sizes.map((size, index) => {
+            const isSelectedSize = selectedSizeIndex === index;
+            return (
+              <View key={index} style={[styles.size, isSelectedSize && styles.sizeSelected]}>
+                <TouchableOpacity 
+                  style={[styles.sizePressable, isSelectedSize && styles.sizePressableSelected]} 
+                  onPress={() => onSizePress(index)}
+                >
+                  <Text style={[styles.sizeText, isSelectedSize && styles.sizeTextSelected]}>
+                    {size.toUpperCase()}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
         </View>
         <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
         <View style={styles.addToCardButton}>
@@ -100,10 +108,14 @@ const styles = StyleSheet.create({
   size: {
     borderWidth: 2,
     borderColor: '#9BACB3',
-    width: 35,
-    height: 35,
     marginHorizontal: 7,
     borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sizePressable: {
+    height: 35,
+    width: 35,
     justifyContent: 'center',
   },
   sizeText: {
@@ -116,6 +128,8 @@ const styles = StyleSheet.create({
   sizeSelected: {
     backgroundColor: '#577380',
     borderColor: '#577380',
+  },
+  sizePressableSelected: {
     width: 38,
     height: 38,
   },
