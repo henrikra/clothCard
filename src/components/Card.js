@@ -1,15 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Card = () => {
+const Card = ({colors, onColorPress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.colors}>
-          <View style={[styles.color, styles.red]} />
-          <View style={[styles.color, styles.blue]} />
-          <View style={[styles.color, styles.green]} />
-          <View style={[styles.color, styles.yellow]} />
+          {colors.map(color => 
+            <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(color)} />
+          )}
         </View>
         <Text style={styles.productName}>REGLAN CHECK SHIRT</Text>
         <View style={styles.priceContainer}>

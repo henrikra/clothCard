@@ -14,16 +14,20 @@ import Card from './Card';
 const {width: screenWidth} = Dimensions.get('window');
 const halfScreenWidth = screenWidth / 2;
 
-const images = [
-  require('../img/red-dress.png'),
-  require('../img/blue-dress.png'),
-  require('../img/green-dress.png'),
-  require('../img/yellow-dress.png'),
+const products = [
+  {image: require('../img/red-dress.png'), color: 'red'},
+  {image: require('../img/blue-dress.png'), color: 'blue'},
+  {image: require('../img/green-dress.png'), color: 'green'},
+  {image: require('../img/yellow-dress.png'), color: 'yellow'},
 ];
 
 class clothCard extends Component {
   state = {
     scrollX: new Animated.Value(0),
+  }
+
+  scrollToImage = index => {
+    console.log(index);
   }
   
   render() {
@@ -41,7 +45,7 @@ class clothCard extends Component {
               [{nativeEvent: {contentOffset: {x: scrollX}}}]
             )}
           >
-            {images.map((image, index) => {
+            {products.map((product, index) => {
               const multiplier = screenWidth * index;
               return (
                 <Animated.Image 
@@ -56,13 +60,13 @@ class clothCard extends Component {
                     },
                   ]} 
                   resizeMode="contain" 
-                  source={image}
+                  source={product.image}
                 />
               );
             })}
           </ScrollView>
         </View>
-        <Card />
+        <Card onColorPress={this.scrollToImage} colors={products.map(product => product.color)} />
       </View>
     );
   }
