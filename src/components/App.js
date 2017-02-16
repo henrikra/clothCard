@@ -28,6 +28,7 @@ const product = {
 class clothCard extends Component {
   state = {
     scrollX: new Animated.Value(0),
+    selectedSizeIndex: 1,
   }
 
   scrollToImage = index => {
@@ -35,7 +36,7 @@ class clothCard extends Component {
   }
   
   render() {
-    const {scrollX} = this.state;
+    const {scrollX, selectedSizeIndex} = this.state;
 
     return (
       <View style={styles.container}>
@@ -71,7 +72,12 @@ class clothCard extends Component {
             })}
           </ScrollView>
         </View>
-        <Card onColorPress={this.scrollToImage} colors={product.colors.map(product => product.color)} />
+        <Card 
+          onColorPress={this.scrollToImage} 
+          colors={product.colors.map(product => product.color)} 
+          sizes={product.sizes}
+          selectedSizeIndex={selectedSizeIndex}
+        />
       </View>
     );
   }
