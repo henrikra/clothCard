@@ -15,7 +15,6 @@ import Card from './Card';
 const {width: screenWidth} = Dimensions.get('window');
 const halfScreenWidth = screenWidth / 2;
 
-
 const product = {
   name: 'Reglan check shirt',
   sizes: ['s', 'm', 'l'],
