@@ -33,7 +33,7 @@ const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress, onAd
         </View>
         <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
         <View style={styles.addToCardButton}>
-          <TouchableOpacity onPress={onAddToCardPress}>
+          <TouchableOpacity style={styles.addToCardButtonPressable} onPress={onAddToCardPress}>
             <Text style={styles.addToCardButtonText}>ADD TO CART</Text>
           </TouchableOpacity>
         </View>
@@ -146,6 +146,8 @@ const styles = StyleSheet.create({
   addToCardButton: {
     borderWidth: 2,
     borderColor: '#577380',
+  },
+  addToCardButtonPressable: {
     paddingVertical: 10,
   },
   addToCardButtonText: {
