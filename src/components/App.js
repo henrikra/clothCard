@@ -33,8 +33,12 @@ class clothCard extends Component {
     selectedColorIndex: 0,
   }
 
-  scrollToImage = index => {
+  selectColor = index => {
     this.setState({selectedColorIndex: index});
+  }
+
+  scrollToImage = index => {
+    this.selectColor(index);
     this.images.scrollTo({x: index * screenWidth})
   }
 
@@ -64,6 +68,9 @@ class clothCard extends Component {
             onScroll={Animated.event(
               [{nativeEvent: {contentOffset: {x: scrollX}}}]
             )}
+            onMomentumScrollEnd={({nativeEvent}) => {
+              this.selectColor(nativeEvent.contentOffset.x / screenWidth);
+            }}
           >
             {product.colors.map((product, index) => {
               const multiplier = screenWidth * index;
