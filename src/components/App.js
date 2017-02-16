@@ -50,8 +50,8 @@ class clothCard extends Component {
                     styles.image,
                     {
                       opacity: scrollX.interpolate({
-                        inputRange: [0 + multiplier, halfScreenWidth + multiplier],
-                        outputRange: [1 , 0],
+                        inputRange: [-halfScreenWidth + multiplier, multiplier, halfScreenWidth + multiplier],
+                        outputRange: [0, 1 , 0],
                       })
                     },
                   ]} 
