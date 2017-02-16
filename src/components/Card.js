@@ -6,8 +6,8 @@ const Card = ({colors, onColorPress}) => {
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.colors}>
-          {colors.map(color => 
-            <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(color)} />
+          {colors.map((color, index) => 
+            <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)} />
           )}
         </View>
         <Text style={styles.productName}>REGLAN CHECK SHIRT</Text>

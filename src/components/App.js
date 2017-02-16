@@ -27,7 +27,7 @@ class clothCard extends Component {
   }
 
   scrollToImage = index => {
-    console.log(index);
+    this.images.scrollTo({x: index * screenWidth})
   }
   
   render() {
@@ -37,6 +37,7 @@ class clothCard extends Component {
       <View style={styles.container}>
         <View style={styles.images}>
           <ScrollView
+            ref={images => {this.images = images;}}
             horizontal 
             pagingEnabled 
             showsHorizontalScrollIndicator={false}
