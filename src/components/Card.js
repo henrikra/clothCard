@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Card = () => {
   return (
@@ -25,6 +25,12 @@ const Card = () => {
           <View style={styles.size}>
             <Text style={styles.sizeText}>L</Text>
           </View>
+        </View>
+        <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
+        <View style={styles.addToCardButton}>
+          <TouchableOpacity>
+            <Text style={styles.addToCardButtonText}>ADD TO CART</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -113,12 +119,31 @@ const styles = StyleSheet.create({
   sizeSelected: {
     backgroundColor: '#577380',
     borderColor: '#577380',
-    width: 40,
-    height: 40,
+    width: 38,
+    height: 38,
   },
   sizeTextSelected: {
     color: '#ffffff',
   },
+  description: {
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#4D5762',
+    flexGrow: 1,
+    letterSpacing: 1,
+  },
+  addToCardButton: {
+    borderWidth: 2,
+    borderColor: '#577380',
+    paddingVertical: 10,
+  },
+  addToCardButtonText: {
+    textAlign: 'center',
+    fontWeight: '600',
+    letterSpacing: 1,
+    fontSize: 12,
+    color: '#577380'
+  }
 });
 
 export default Card;
