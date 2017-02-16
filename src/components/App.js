@@ -7,6 +7,7 @@ import {
   Animated,
   Image,
   Dimensions,
+  Alert,
 } from 'react-native';
 
 import Card from './Card';
@@ -16,6 +17,7 @@ const halfScreenWidth = screenWidth / 2;
 
 
 const product = {
+  name: 'Reglan check shirt',
   sizes: ['s', 'm', 'l'],
   colors: [
     {image: require('../img/red-dress.png'), color: 'red'},
@@ -29,15 +31,24 @@ class clothCard extends Component {
   state = {
     scrollX: new Animated.Value(0),
     selectedSizeIndex: 1,
+    selectedColorIndex: 0,
   }
 
   scrollToImage = index => {
+    this.setState({selectedColorIndex: index});
     this.images.scrollTo({x: index * screenWidth})
   }
 
   selectSize = index => {
     this.setState({selectedSizeIndex: index});
-  }  
+  }
+
+  buyProduct = () => {
+    const {selectedSizeIndex, selectedColorIndex} = this.state;
+    const size = product.sizes[selectedSizeIndex];
+    const color = product.colors[selectedColorIndex].color;
+    Alert.alert(`You have just bought:\n${product.name}\nSize: ${size}\nColor: ${color}`);
+  }
   
   render() {
     const {scrollX, selectedSizeIndex} = this.state;
@@ -82,6 +93,8 @@ class clothCard extends Component {
           sizes={product.sizes}
           selectedSizeIndex={selectedSizeIndex}
           onSizePress={this.selectSize}
+          onAddToCardPress={this.buyProduct}
+          name={product.name}
         />
       </View>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress}) => {
+const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress, onAddToCardPress, name}) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -10,7 +10,7 @@ const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress}) => 
             <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)} />
           )}
         </View>
-        <Text style={styles.productName}>REGLAN CHECK SHIRT</Text>
+        <Text style={styles.productName}>{name.toUpperCase()}</Text>
         <View style={styles.priceContainer}>
           <Text style={styles.currency}>$</Text><Text style={styles.price}>129.00</Text>
         </View>
@@ -33,7 +33,7 @@ const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress}) => 
         </View>
         <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
         <View style={styles.addToCardButton}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onAddToCardPress}>
             <Text style={styles.addToCardButtonText}>ADD TO CART</Text>
           </TouchableOpacity>
         </View>
