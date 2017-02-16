@@ -7,13 +7,24 @@ class Card extends Component {
   }
   
   render() {
-    const {colors, onColorPress, sizes, selectedSizeIndex, onSizePress, onAddToCardPress, name} = this.props;
+    const {colors, 
+      onColorPress, 
+      sizes, 
+      selectedSizeIndex, 
+      onSizePress, 
+      onAddToCardPress, 
+      name, 
+      selectedColorIndex,
+    } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.card}>
           <View style={styles.colors}>
             {colors.map((color, index) => 
-              <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)} />
+              <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)}>
+                {selectedColorIndex === index && <View style={styles.colorSelected} />}
+              </TouchableOpacity>
             )}
           </View>
           <Text style={styles.productName}>{name.toUpperCase()}</Text>
@@ -70,6 +81,15 @@ const styles = StyleSheet.create({
     height: 25,
     marginHorizontal: 7,
     borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  colorSelected: {
+    width: 15,
+    height: 15,
+    borderColor: '#ffffff',
+    borderWidth: 2,
+    borderRadius: 15,
   },
   red: {
     backgroundColor: '#F75251',

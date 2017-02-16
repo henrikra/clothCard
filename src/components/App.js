@@ -50,7 +50,7 @@ class clothCard extends Component {
   }
   
   render() {
-    const {scrollX, selectedSizeIndex} = this.state;
+    const {scrollX, selectedSizeIndex, selectedColorIndex} = this.state;
 
     return (
       <View style={styles.container}>
@@ -91,6 +91,7 @@ class clothCard extends Component {
           colors={product.colors.map(product => product.color)} 
           sizes={product.sizes}
           selectedSizeIndex={selectedSizeIndex}
+          selectedColorIndex={selectedColorIndex}
           onSizePress={this.selectSize}
           onAddToCardPress={this.buyProduct}
           name={product.name}
