@@ -1,46 +1,53 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation} from 'react-native';
 
-const Card = ({colors, onColorPress, sizes, selectedSizeIndex, onSizePress, onAddToCardPress, name}) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <View style={styles.colors}>
-          {colors.map((color, index) => 
-            <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)} />
-          )}
-        </View>
-        <Text style={styles.productName}>{name.toUpperCase()}</Text>
-        <View style={styles.priceContainer}>
-          <Text style={styles.currency}>$</Text><Text style={styles.price}>129.00</Text>
-        </View>
-        <View style={styles.sizes}>
-          {sizes.map((size, index) => {
-            const isSelectedSize = selectedSizeIndex === index;
-            return (
-              <View key={index} style={[styles.size, isSelectedSize && styles.sizeSelected]}>
-                <TouchableOpacity 
-                  style={[styles.sizePressable, isSelectedSize && styles.sizePressableSelected]} 
-                  onPress={() => onSizePress(index)}
-                >
-                  <Text style={[styles.sizeText, isSelectedSize && styles.sizeTextSelected]}>
-                    {size.toUpperCase()}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            );
-          })}
-        </View>
-        <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
-        <View style={styles.addToCardButton}>
-          <TouchableOpacity style={styles.addToCardButtonPressable} onPress={onAddToCardPress}>
-            <Text style={styles.addToCardButtonText}>ADD TO CART</Text>
-          </TouchableOpacity>
+class Card extends Component {
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+  
+  render() {
+    const {colors, onColorPress, sizes, selectedSizeIndex, onSizePress, onAddToCardPress, name} = this.props;
+    return (
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <View style={styles.colors}>
+            {colors.map((color, index) => 
+              <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)} />
+            )}
+          </View>
+          <Text style={styles.productName}>{name.toUpperCase()}</Text>
+          <View style={styles.priceContainer}>
+            <Text style={styles.currency}>$</Text><Text style={styles.price}>129.00</Text>
+          </View>
+          <View style={styles.sizes}>
+            {sizes.map((size, index) => {
+              const isSelectedSize = selectedSizeIndex === index;
+              return (
+                <View key={index} style={[styles.size, isSelectedSize && styles.sizeSelected]}>
+                  <TouchableOpacity 
+                    style={[styles.sizePressable, isSelectedSize && styles.sizePressableSelected]} 
+                    onPress={() => onSizePress(index)}
+                  >
+                    <Text style={[styles.sizeText, isSelectedSize && styles.sizeTextSelected]}>
+                      {size.toUpperCase()}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+          <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
+          <View style={styles.addToCardButton}>
+            <TouchableOpacity style={styles.addToCardButtonPressable} onPress={onAddToCardPress}>
+              <Text style={styles.addToCardButtonText}>ADD TO CART</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
