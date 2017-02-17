@@ -7,7 +7,8 @@ class Card extends Component {
   }
   
   render() {
-    const {colors, 
+    const {
+      colors, 
       onColorPress, 
       sizes, 
       selectedSizeIndex, 
