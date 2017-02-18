@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation} from 'react-native';
 
 class Card extends Component {
-  componentWillUpdate() {
-    LayoutAnimation.spring();
+  componentWillUpdate(nextProps, nextState) {
+    if (this.props.selectedSizeIndex !== nextProps.selectedSizeIndex) {
+      LayoutAnimation.spring();
+    } 
   }
-  
+
   render() {
     const {
       colors, 
