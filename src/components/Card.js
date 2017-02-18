@@ -9,6 +9,7 @@ import {View,
 } from 'react-native';
 
 import {halfScreenHeight} from '../screen';
+import {isAndroid} from '../platform';
 
 class Card extends Component {
   state = {
@@ -49,7 +50,16 @@ class Card extends Component {
     } = this.props;
 
     return (
-      <Animated.View style={[styles.container, {top: this.state.topAnimation}]}>
+      <Animated.View
+        style={[
+          styles.container, 
+          {top: this.state.topAnimation.interpolate({
+            inputRange: [0, halfScreenHeight],
+            outputRange: [0 + isAndroid ? 0 : 20, halfScreenHeight],
+            extrapolate: 'clamp',
+          })},
+        ]}
+      >
         <View style={styles.card} {...this.panResponder.panHandlers}>
           <View style={styles.colors} >
             {colors.map((color, index) => 
