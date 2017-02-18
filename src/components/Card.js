@@ -24,8 +24,12 @@ class Card extends Component {
       this.state.topAnimation.setValue(0);
     },
     onPanResponderMove: Animated.event([null, {dy: this.state.topAnimation}]),
-    onPanResponderRelease: () => {
+    onPanResponderRelease: (evt, gestureState) => {
       this.state.topAnimation.flattenOffset();
+      Animated.timing(
+        this.state.topAnimation, 
+        {toValue: gestureState.dy < 0 ? 0 : halfScreenHeight, duration: 200},
+      ).start();
     }
   })
   
