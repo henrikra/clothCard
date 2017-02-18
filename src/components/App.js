@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Platform,
   Animated,
   Image,
   Dimensions,
@@ -12,6 +11,7 @@ import {
 
 import Card from './Card';
 import {screenWidth, halfScreenWidth} from '../screen';
+import {isAndroid} from '../platform';
 
 const product = {
   name: 'Reglan check shirt',
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   images: {
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 20 : 0,
+    marginTop: isAndroid ? 0 : 20,
   },
   image: {
     width: screenWidth,
