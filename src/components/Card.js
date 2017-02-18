@@ -1,7 +1,35 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation} from 'react-native';
+import {View, 
+  Text, 
+  StyleSheet, 
+  TouchableOpacity, 
+  LayoutAnimation,
+  PanResponder,
+  Animated,
+} from 'react-native';
+
+import {halfScreenHeight} from '../screen';
 
 class Card extends Component {
+  state = {
+    topAnimation: new Animated.Value(halfScreenHeight),
+  }
+  
+  panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onMoveShouldSetPanResponderCapture: () => true,
+    onPanResponderGrant: () => {
+      this.state.topAnimation.setOffset(this.state.topAnimation._value);
+      this.state.topAnimation.setValue(0);
+    },
+    onPanResponderMove: (evt, gestureState) => {
+      this.state.topAnimation.setValue(gestureState.dy);
+    },
+    onPanResponderRelease: () => {
+      this.state.topAnimation.flattenOffset();
+    }
+  })
+  
   componentWillUpdate(nextProps, nextState) {
     if (this.props.selectedSizeIndex !== nextProps.selectedSizeIndex) {
       LayoutAnimation.spring();
@@ -21,9 +49,9 @@ class Card extends Component {
     } = this.props;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <View style={styles.colors}>
+      <Animated.View style={[styles.container, {top: this.state.topAnimation}]}>
+        <View style={styles.card} {...this.panResponder.panHandlers}>
+          <View style={styles.colors} >
             {colors.map((color, index) => 
               <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)}>
                 {selectedColorIndex === index && <View style={styles.colorSelected} />}
@@ -58,14 +86,17 @@ class Card extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
     paddingHorizontal: 10,
   },
   card: {

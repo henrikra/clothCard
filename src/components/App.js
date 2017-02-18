@@ -11,9 +11,7 @@ import {
 } from 'react-native';
 
 import Card from './Card';
-
-const {width: screenWidth} = Dimensions.get('window');
-const halfScreenWidth = screenWidth / 2;
+import {screenWidth, halfScreenWidth} from '../screen';
 
 const product = {
   name: 'Reglan check shirt',
@@ -93,6 +91,7 @@ class clothCard extends Component {
             })}
           </ScrollView>
         </View>
+        <View style={styles.spacer} />
         <Card 
           onColorPress={this.scrollToImage} 
           colors={product.colors.map(product => product.color)} 
@@ -120,6 +119,9 @@ const styles = StyleSheet.create({
   image: {
     width: screenWidth,
   },
+  spacer: {
+    flex: 1,
+  }
 });
 
 export default clothCard;
