@@ -23,9 +23,7 @@ class Card extends Component {
       this.state.topAnimation.setOffset(this.state.topAnimation._value);
       this.state.topAnimation.setValue(0);
     },
-    onPanResponderMove: (evt, gestureState) => {
-      this.state.topAnimation.setValue(gestureState.dy);
-    },
+    onPanResponderMove: Animated.event([null, {dy: this.state.topAnimation}]),
     onPanResponderRelease: () => {
       this.state.topAnimation.flattenOffset();
     }
