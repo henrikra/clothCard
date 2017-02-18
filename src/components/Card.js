@@ -11,14 +11,16 @@ import {View,
 import {halfScreenHeight} from '../screen';
 import {isAndroid} from '../platform';
 
-const scrollTo = dy => {
+const scrollTo = (dy, vy) => {
   const isFarEnough = Math.abs(dy) > 50;
+  const isVelocityDown = vy > 0;
   const isDown = dy > 0;
+
   if (isDown) {
-    return isFarEnough ? halfScreenHeight : 0;
+    return isFarEnough && isVelocityDown ? halfScreenHeight : 0;
   }
   else {
-    return isFarEnough ? 0 : halfScreenHeight
+    return isFarEnough && !isVelocityDown ? 0 : halfScreenHeight
   }
 };
 
@@ -40,7 +42,7 @@ class Card extends Component {
       Animated.timing(
         this.state.topAnimation, 
         {
-          toValue: scrollTo(gestureState.dy), 
+          toValue: scrollTo(gestureState.dy, gestureState.vy), 
           duration: 200,
         },
       ).start();
