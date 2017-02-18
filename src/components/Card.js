@@ -30,8 +30,7 @@ class Card extends Component {
   }
   
   panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onMoveShouldSetPanResponderCapture: () => true,
+    onMoveShouldSetPanResponderCapture: (evt, gestureState) => Math.abs(gestureState.dy) > 10,
     onPanResponderGrant: () => {
       this.state.topAnimation.setOffset(this.state.topAnimation._value);
       this.state.topAnimation.setValue(0);
