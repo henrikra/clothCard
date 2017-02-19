@@ -15,12 +15,21 @@ const scrollTo = (dy, vy) => {
   const isFarEnough = Math.abs(dy) > 50;
   const isVelocityDown = vy > 0;
   const isDown = dy > 0;
+  const hasVelocity = Math.abs(vy) > 0.1;
 
   if (isDown) {
-    return isFarEnough && isVelocityDown ? halfScreenHeight : 0;
+    if (hasVelocity) {
+      return isFarEnough && isVelocityDown ? halfScreenHeight : 0;
+    }
+
+    return isFarEnough ? halfScreenHeight : 0;
   }
   else {
-    return isFarEnough && !isVelocityDown ? 0 : halfScreenHeight
+    if (hasVelocity) {
+      return isFarEnough && !isVelocityDown ? 0 : halfScreenHeight;
+    }
+
+    return isFarEnough ? 0 : halfScreenHeight;
   }
 };
 
