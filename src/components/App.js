@@ -67,7 +67,7 @@ class clothCard extends Component {
               [{nativeEvent: {contentOffset: {x: scrollX}}}]
             )}
             onMomentumScrollEnd={({nativeEvent}) => {
-              this.selectColor(nativeEvent.contentOffset.x / screenWidth);
+              this.selectColor(Math.round(nativeEvent.contentOffset.x / screenWidth));
             }}
           >
             {product.colors.map((product, index) => {
