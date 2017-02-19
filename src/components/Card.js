@@ -84,8 +84,8 @@ class Card extends Component {
         style={[
           styles.container, 
           {top: this.state.topAnimation.interpolate({
-            inputRange: [0, halfScreenHeight],
-            outputRange: [0 + isAndroid ? 0 : 20, halfScreenHeight],
+            inputRange: [cardState.open, cardState.close],
+            outputRange: [isAndroid ? 0 : 20, halfScreenHeight],
             extrapolate: 'clamp',
           })},
         ]}
