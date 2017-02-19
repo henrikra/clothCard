@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, 
   Text, 
-  StyleSheet, 
   TouchableOpacity, 
   LayoutAnimation,
   PanResponder,
@@ -10,6 +9,7 @@ import {View,
 
 import {halfScreenHeight} from '../screen';
 import {isAndroid} from '../platform';
+import StyleSheet from '../StyleSheet';
 
 const cardState = {
   open: 0,
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
   sizes: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 15,
     alignItems: 'center',
   },
   size: {
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 15,
     color: '#4D5762',
     letterSpacing: 1,
   },
