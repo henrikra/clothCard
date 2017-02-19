@@ -159,6 +159,18 @@ class Card extends Component {
                 <Text style={styles.featureText}>Lace-up blacket</Text>
               </View>
             </View>
+            <View style={styles.socials}>
+              <View style={[styles.social, styles.socialFavourite]}>
+                <TouchableOpacity style={styles.socialPressable}>
+                  <Text style={styles.socialText}>57 Favourite</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={[styles.social, styles.socialReviews]}>
+                <TouchableOpacity style={styles.socialPressable}>
+                  <Text style={styles.socialText}>31 Reviews</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </Animated.View>
           <View style={styles.addToCardButton}>
             <TouchableOpacity style={styles.addToCardButtonPressable} onPress={onAddToCardPress}>
@@ -306,6 +318,34 @@ const styles = StyleSheet.create({
   },
   featureText: {
     letterSpacing: 1,
+  },
+  socials: {
+    flexDirection: 'row',
+  },
+  social: {
+    flex: 1,
+    borderTopColor: '#9BACB3',
+    borderTopWidth: 2,
+    borderBottomColor: '#9BACB3',
+    borderBottomWidth: 2,
+    padding: 10,
+  },
+  socialFavourite: {
+    borderLeftColor: '#9BACB3',
+    borderLeftWidth: 2,
+    borderRightColor: '#9BACB3',
+    borderRightWidth: 1,
+  },
+  socialReviews: {
+    borderRightColor: '#9BACB3',
+    borderRightWidth: 2,
+    borderLeftColor: '#9BACB3',
+    borderLeftWidth: 1,
+  },
+  socialText: {
+    fontSize: 16,
+    letterSpacing: 1,
+    textAlign: 'center',
   },
   addToCardButton: {
     borderWidth: 2,
