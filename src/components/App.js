@@ -48,7 +48,7 @@ class clothCard extends Component {
     const {selectedSizeIndex, selectedColorIndex} = this.state;
     const size = product.sizes[selectedSizeIndex].toUpperCase();
     const color = product.colors[selectedColorIndex].color;
-    Alert.alert(`You have just bought:\n${product.name}\nSize: ${size}\nColor: ${color}`);
+    Alert.alert('Purchase complete!', `${product.name}\nSize: ${size}\nColor: ${color}`);
   }
   
   render() {
