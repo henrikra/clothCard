@@ -12,24 +12,23 @@ import {halfScreenHeight} from '../screen';
 import {isAndroid} from '../platform';
 
 const scrollTo = (dy, vy) => {
-  const isFarEnough = Math.abs(dy) > 50;
   const isVelocityDown = vy > 0;
   const isDown = dy > 0;
   const hasVelocity = Math.abs(vy) > 0.1;
 
   if (isDown) {
     if (hasVelocity) {
-      return isFarEnough && isVelocityDown ? halfScreenHeight : 0;
+      return isVelocityDown ? halfScreenHeight : 0;
     }
 
-    return isFarEnough ? halfScreenHeight : 0;
+    return halfScreenHeight;
   }
   else {
     if (hasVelocity) {
-      return isFarEnough && !isVelocityDown ? 0 : halfScreenHeight;
+      return !isVelocityDown ? 0 : halfScreenHeight;
     }
 
-    return isFarEnough ? 0 : halfScreenHeight;
+    return 0;
   }
 };
 
