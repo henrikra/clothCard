@@ -84,7 +84,7 @@ class clothCard extends Component {
                       })
                     },
                   ]} 
-                  resizeMode="contain" 
+                  resizeMode={selectedSizeIndex > 1 ? 'stretch' : 'contain'} 
                   source={product.image}
                 />
               );
