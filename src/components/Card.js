@@ -128,11 +128,6 @@ class Card extends Component {
             style={[
               styles.extraInfo,
               {
-                height: this.state.topAnimation.interpolate({
-                  inputRange: [cardState.open, cardState.close],
-                  outputRange: [2000, 0],
-                  extrapolate: 'clamp',
-                }),
                 opacity: this.state.topAnimation.interpolate({
                   inputRange: [cardState.open, cardState.close],
                   outputRange: [1, 0],
@@ -328,6 +323,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderBottomColor: '#9BACB3',
     borderBottomWidth: 2,
+  },
+  socialPressable: {
     padding: 10,
   },
   socialFavourite: {
