@@ -93,7 +93,11 @@ class Card extends Component {
         <View style={styles.card} {...this.panResponder.panHandlers}>
           <View style={styles.colors} >
             {colors.map((color, index) => 
-              <TouchableOpacity key={color} style={[styles.color, styles[color]]} onPress={() => onColorPress(index)}>
+              <TouchableOpacity
+                key={color} 
+                style={[styles.color, styles[color]]} 
+                onPress={() => onColorPress(index)}
+              >
                 {selectedColorIndex === index && <View style={styles.colorSelected} />}
               </TouchableOpacity>
             )}
