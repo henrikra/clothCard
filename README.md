@@ -1,3 +1,3 @@
 # clothCard
 
-![https://media.giphy.com/media/26xBLTGKTf5RlPOXm/giphy.gif](Animation 1)
+![https://media.giphy.com/media/26xBLEBg38pOegiGI/giphy.gif](Animation 1)
