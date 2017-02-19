@@ -11,6 +11,11 @@ import {View,
 import {halfScreenHeight} from '../screen';
 import {isAndroid} from '../platform';
 
+const cardState = {
+  open: 0,
+  close: halfScreenHeight,
+};
+
 const scrollTo = (dy, vy) => {
   const isVelocityDown = vy > 0;
   const isDown = dy > 0;
@@ -18,23 +23,23 @@ const scrollTo = (dy, vy) => {
 
   if (isDown) {
     if (hasVelocity) {
-      return isVelocityDown ? halfScreenHeight : 0;
+      return isVelocityDown ? cardState.close : cardState.open;
     }
 
-    return halfScreenHeight;
+    return cardState.close;
   }
   else {
     if (hasVelocity) {
-      return !isVelocityDown ? 0 : halfScreenHeight;
+      return !isVelocityDown ? cardState.open : cardState.close;
     }
 
-    return 0;
+    return cardState.open;
   }
 };
 
 class Card extends Component {
   state = {
-    topAnimation: new Animated.Value(halfScreenHeight),
+    topAnimation: new Animated.Value(cardState.close),
   }
   
   panResponder = PanResponder.create({
