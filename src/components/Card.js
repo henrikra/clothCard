@@ -41,7 +41,7 @@ class Card extends Component {
   state = {
     topAnimation: new Animated.Value(cardState.close),
   }
-  
+
   panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (evt, gestureState) => Math.abs(gestureState.dy) > 10,
     onPanResponderGrant: () => {
@@ -124,6 +124,42 @@ class Card extends Component {
             })}
           </View>
           <Text style={styles.description}>Oversized shirt Check print Shirt Collar.</Text>
+          <Animated.View
+            style={[
+              styles.extraInfo,
+              {
+                height: this.state.topAnimation.interpolate({
+                  inputRange: [cardState.open, cardState.close],
+                  outputRange: [2000, 0],
+                  extrapolate: 'clamp',
+                }),
+                opacity: this.state.topAnimation.interpolate({
+                  inputRange: [cardState.open, cardState.close],
+                  outputRange: [1, 0],
+                  extrapolate: 'clamp',
+                }),
+              },
+            ]}
+          >
+            <View style={styles.features}>
+              <View style={styles.feature}>
+                <View style={styles.featureBullet} />
+                <Text style={styles.featureText}>Soft woven gauze</Text>
+              </View>
+              <View style={styles.feature}>
+                <View style={styles.featureBullet} />
+                <Text style={styles.featureText}>Flowy, cinched shape</Text>
+              </View>
+              <View style={styles.feature}>
+                <View style={styles.featureBullet} />
+                <Text style={styles.featureText}>Split crew neck</Text>
+              </View>
+              <View style={styles.feature}>
+                <View style={styles.featureBullet} />
+                <Text style={styles.featureText}>Lace-up blacket</Text>
+              </View>
+            </View>
+          </Animated.View>
           <View style={styles.addToCardButton}>
             <TouchableOpacity style={styles.addToCardButtonPressable} onPress={onAddToCardPress}>
               <Text style={styles.addToCardButtonText}>ADD TO CART</Text>
@@ -243,9 +279,32 @@ const styles = StyleSheet.create({
   },
   description: {
     textAlign: 'center',
-    marginTop: 20,
+    marginVertical: 20,
     color: '#4D5762',
-    flexGrow: 1,
+    letterSpacing: 1,
+  },
+  extraInfo: {
+    overflow: 'hidden',
+    flex: 1,
+  },
+  features: {
+    borderTopColor: '#9BACB3',
+    borderTopWidth: 2,
+    padding: 20,
+  },
+  feature: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  featureBullet: {
+    width: 10,
+    height: 10,
+    backgroundColor: '#9BACB3',
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  featureText: {
     letterSpacing: 1,
   },
   addToCardButton: {
